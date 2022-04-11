@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.name-container > p {
+  margin: 34px;
+}
+
+.btns {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px;
+  gap: 20px;  
+}

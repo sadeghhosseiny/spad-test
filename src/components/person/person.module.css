@@ -11,11 +11,16 @@
   margin-bottom: 20px;
 }
 
-.checkbox {
+.checkbox-and-edit {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  gap: 15px;
 }
+
+.checkbox-and-edit > div, .checkbox-and-edit > input {
+  cursor: pointer;
+} 
 
 .check-btn {
   align-self: flex-end;

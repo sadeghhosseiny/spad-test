@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./inputField.module.css";
 
-function InputField({ name, setInfo, info }) {
+function InputField({ name, setInfo, info, data }) {
   const handleSetFormData = (e) => {
     setInfo({
       ...info,
@@ -16,6 +16,7 @@ function InputField({ name, setInfo, info }) {
         onChange={handleSetFormData}
         className={styles["input-field"]}
         type="text"
+        value={data}
       />
     </div>
   );

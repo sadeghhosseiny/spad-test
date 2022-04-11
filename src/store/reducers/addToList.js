@@ -16,12 +16,37 @@ export const addToListReducer = (state = initialState, action) => {
         error: false,
       };
     }
+    case actionTypes.GET_DATA_SUCCESS: {
+      return {
+        requesting: false,
+        success: true,
+        error: false,
+        data: [...state.data, ...action.payload],
+      };
+    }
     case actionTypes.ADD_TO_LIST_SUCCESS: {
       return {
         requesting: false,
         success: true,
         error: false,
         data: [...state.data, action.payload],
+      };
+    }
+    case actionTypes.EDIT_TO_LIST_SUCCESS: {
+      return {
+        requesting: false,
+        success: true,
+        error: false,
+        data: [
+          // ...state?.data,
+          ...state.data.map((item, i) => {
+            if (i === action.payload.index) {
+              return { ...action.payload.data };
+            } else {
+              return item;
+            }
+          }),
+        ],
       };
     }
     case actionTypes.ADD_TO_LIST_ERROR: {

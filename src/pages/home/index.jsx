@@ -1,22 +1,26 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import AddUser from "../../components/addUser";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import AddUser from "../../components/editAndAddUser";
 import Modal from "../../components/modal";
 import Person from "../../components/person";
 import { data } from "../../data";
+import { getData } from "../../store/actions";
 import styles from "./home.module.css";
 
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const reduxData = useSelector((state) => state?.addToListReducer.data);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getData(data));
+  }, []);
+
   return (
     <>
       <div className={styles["person-container"]}>
-        {data.map((item, i) => (
-          <Person item={item} key={i}></Person>
-        ))}
         {reduxData?.map((item, i) => (
-          <Person item={item} key={i}></Person>
+          <Person index={i} item={item} key={i}></Person>
         ))}
         <button
           onClick={() => setIsModalOpen(true)}

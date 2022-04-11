@@ -1,0 +1,24 @@
+.person-card {
+  background-color: #E3E3E3;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.check-btn {
+  background-color: #57EFDD;
+  border-radius: 5px;
+  padding: 5px 20px;
+  outline: none;
+  border: none;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.person-card > div > p {
+  margin: 0;
+  padding-bottom: 10px;
+}

@@ -10,6 +10,8 @@ import RowOfInformationOfCheck from "../rowOfInformationOfCheck";
 function Check({ setIsModalOpen, item, index }) {
   const [approveBooleans, setApproveBooleans] = useState(null);
 
+  const [selectCrossOrTick, setSelectCrossOrTick] = useState("");
+
   const { name, FamilyName, IDNo, BirthDate, address, mobile } = item;
 
   const arrayOfInformation = [
@@ -26,6 +28,9 @@ function Check({ setIsModalOpen, item, index }) {
       ...approveBooleans,
       [e.target.name]: name === "cross" ? false : true,
     });
+    name === "cross"
+      ? setSelectCrossOrTick("cross")
+      : setSelectCrossOrTick("tick");
   };
 
   const dispatch = useDispatch();
@@ -83,12 +88,14 @@ function Check({ setIsModalOpen, item, index }) {
               onClick={(e) => handleApproveInformationOfUser(e, "cross")}
               src={cross}
               alt="cross"
+              className={selectCrossOrTick === "cross" && styles["cross"]}
             />
             <img
               name="pic"
               onClick={handleApproveInformationOfUser}
               src={tick}
               alt="tick"
+              className={selectCrossOrTick === "tick" && styles["tick"]}
             />
           </div>
         </div>

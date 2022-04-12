@@ -1,16 +1,23 @@
 import React from "react";
 import styles from "./inputField.module.css";
 
-function InputField({ name, setInfo, info, data }) {
+function InputField({
+  name,
+  setInformationOfUser,
+  informationOfUsers,
+  data,
+  title,
+}) {
   const handleSetFormData = (e) => {
-    setInfo({
-      ...info,
+    setInformationOfUser({
+      ...informationOfUsers,
       [name]: e.target.value,
     });
   };
 
   return (
     <div className={styles["input-container"]}>
+      <p>{title}: </p>
       <input
         name={name}
         onChange={handleSetFormData}

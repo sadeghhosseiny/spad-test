@@ -1,71 +1,111 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToList, editList } from "../../store/actions";
 import Button from "../button";
 import InputField from "../inputField";
 import styles from "./editAndAddUser.module.css";
+import cameraIcon from "../../icons/cameraIcon.png";
 
-function EditAndAddUser({ setIsModalOpen, item, index }) {
-  const [info, setInfo] = useState();
+function EditAndAddUser({ setIsModalOpen, isModalOpen, item, index }) {
+  const [informationOfUsers, setInformationOfUser] = useState(null);
+
+  const imagePickerRef = useRef(null);
+  const [image, setImage] = useState(null);
   // const [inf, setInf] = useState();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setInfo(item);
-  }, []);
-
   const handleDispatchDataToList = () => {
-    item?.name ? dispatch(editList(info, index)) : dispatch(addToList(info));
+    item?.name
+      ? dispatch(editList(informationOfUsers, index))
+      : dispatch(addToList(informationOfUsers));
+    setIsModalOpen(false);
   };
+
+  const addImage = (e) => {
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
+    reader.onload = (readerEvent) => {
+      setImage(readerEvent.target.result);
+      setInformationOfUser({
+        ...informationOfUsers,
+        [e.target.name]: readerEvent.target.result,
+      });
+    };
+  };
+
+  useEffect(() => {
+    setInformationOfUser({ ...item, isChecked: false });
+  }, []);
 
   return (
     <div>
       <div className={styles["container"]}>
-        <div className={styles["name-container"]}>
-          <p>Name: </p>
-          <p>Family Name: </p>
-          <p>Mobile: </p>
-          <p>ID No: </p>
-          <p>Birth date: </p>
-          <p>Address: </p>
-        </div>
-        <div>
+        <div className={styles["inputs-container"]}>
           <InputField
-            data={info?.name}
-            info={info}
-            setInfo={setInfo}
+            data={informationOfUsers?.name}
+            informationOfUsers={informationOfUsers}
+            setInformationOfUser={setInformationOfUser}
             name="name"
+            title="Name"
           />
           <InputField
-            data={info?.FamilyName}
-            info={info}
-            setInfo={setInfo}
+            data={informationOfUsers?.FamilyName}
+            informationOfUsers={informationOfUsers}
+            setInformationOfUser={setInformationOfUser}
             name="FamilyName"
+            title="Family Name"
           />
           <InputField
-            data={info?.mobile}
-            info={info}
-            setInfo={setInfo}
+            data={informationOfUsers?.mobile}
+            informationOfUsers={informationOfUsers}
+            setInformationOfUser={setInformationOfUser}
             name="mobile"
+            title="Mobile"
           />
           <InputField
-            data={info?.IDNo}
-            info={info}
-            setInfo={setInfo}
+            data={informationOfUsers?.IDNo}
+            informationOfUsers={informationOfUsers}
+            setInformationOfUser={setInformationOfUser}
             name="IDNo"
+            title="ID No"
           />
           <InputField
-            data={info?.BirthDate}
-            info={info}
-            setInfo={setInfo}
+            data={informationOfUsers?.BirthDate}
+            informationOfUsers={informationOfUsers}
+            setInformationOfUser={setInformationOfUser}
             name="BirthDate"
+            title="Birth date"
           />
           <InputField
-            data={info?.address}
-            info={info}
-            setInfo={setInfo}
+            data={informationOfUsers?.address}
+            informationOfUsers={informationOfUsers}
+            setInformationOfUser={setInformationOfUser}
             name="address"
+            title="Address"
           />
+          <div
+            className={styles["picture-container"]}
+            onClick={() => imagePickerRef.current.click()}
+          >
+            <p>Profile Pic: </p>
+            {image || informationOfUsers?.img ? (
+              <img src={image || informationOfUsers?.img} alt="avatar" />
+            ) : (
+              <div className={styles["photo"]}>
+                <img src={cameraIcon} alt="avatar" />
+              </div>
+            )}
+            <input
+              type="file"
+              onChange={addImage}
+              hidden
+              ref={imagePickerRef}
+              name="img"
+            />
+          </div>
         </div>
       </div>
       <div className={styles["btns"]}>

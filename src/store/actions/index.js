@@ -20,3 +20,10 @@ export const editList = (data, index) => {
     payload: { data, index },
   };
 };
+
+export const editCheck = (data, index, checkingState, allChecked) => {
+  return {
+    type: actionTypes.EDIT_CHECK_SUCCESS,
+    payload: { data, index, checkingState, allChecked },
+  };
+};

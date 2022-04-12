@@ -5,6 +5,23 @@
   gap: 20px;
 }
 
+.inputs-container {
+  width: 100%;
+  max-width: 365px;
+  margin: auto;
+}
+
+.picture-container {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+.picture-container > p {
+  margin: 0;
+}
+
 .name-container > p {
   margin: 34px;
 }
@@ -14,4 +31,24 @@
   justify-content: flex-end;
   margin: 20px;
   gap: 20px;  
+}
+
+.photo {
+  width: 100px;
+  height: 130px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  display: flex;
+  border: 1px solid #6EEBE7;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.photo > img {
+  margin: auto;
+}
+
+.picture-container > img {
+  width: 100px;
+  border-radius: 5px;
 }

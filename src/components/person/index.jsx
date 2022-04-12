@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../button";
 import styles from "./person.module.css";
 import editImage from "../../icons/edit.png";
 import Modal from "../modal";
 import EditAndAddUser from "../editAndAddUser";
+import { useDispatch } from "react-redux";
+import { editCheck, editList } from "../../store/actions";
 
-function Person({ index, item }) {
+function Person({ index, item, setAllChecked }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleCheckboxChange = () => {
+    dispatch(editCheck(item, index, !item.isChecked));
+  };
+
+  useEffect(() => {
+    !item.isChecked && setAllChecked(false);
+  }, [item.isChecked]);
 
   return (
     <>
@@ -15,7 +26,11 @@ function Person({ index, item }) {
           <div onClick={() => setIsModalOpen(true)}>
             <img src={editImage} alt="edit" />
           </div>
-          <input type="checkbox" />
+          <input
+            onChange={handleCheckboxChange}
+            type="checkbox"
+            checked={item.isChecked}
+          />
         </div>
         <div className={styles["person-card"]}>
           <div>
@@ -44,6 +59,7 @@ function Person({ index, item }) {
             index={index}
             item={item}
             setIsModalOpen={setIsModalOpen}
+            isModalOpen={isModalOpen}
           />
         </Modal>
       )}

@@ -5,6 +5,7 @@ export const data = [
     FamilyName: "Stewart",
     BirthDate: "1991/01/13",
     IDNo: "1234567890",
+    isChecked: false,
   },
   {
     img: "./images/jack.jpg",
@@ -12,6 +13,7 @@ export const data = [
     FamilyName: "Stewart",
     BirthDate: "1991/01/20",
     IDNo: "1234567810",
+    isChecked: false,
   },
   {
     img: "./images/natalia.jpg",
@@ -19,5 +21,6 @@ export const data = [
     FamilyName: "Gomez",
     BirthDate: "1986/06/6",
     IDNo: "3214567890",
+    isChecked: false,
   },
 ];

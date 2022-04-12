@@ -49,6 +49,25 @@ export const addToListReducer = (state = initialState, action) => {
         ],
       };
     }
+    case actionTypes.EDIT_CHECK_SUCCESS: {
+      return {
+        requesting: false,
+        success: true,
+        error: false,
+        data: [
+          ...state.data.map((item, i) => {
+            if (action.payload.data === false) {
+              return { ...item, isChecked: true };
+            }
+            if (i === action.payload.index) {
+              return { ...item, isChecked: action.payload.checkingState };
+            } else {
+              return item;
+            }
+          }),
+        ],
+      };
+    }
     case actionTypes.ADD_TO_LIST_ERROR: {
       return {
         requesting: false,

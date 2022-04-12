@@ -6,12 +6,11 @@ import InputField from "../inputField";
 import styles from "./editAndAddUser.module.css";
 import cameraIcon from "../../icons/cameraIcon.png";
 
-function EditAndAddUser({ setIsModalOpen, isModalOpen, item, index }) {
+function EditAndAddUser({ setIsModalOpen, item, index }) {
   const [informationOfUsers, setInformationOfUser] = useState(null);
 
   const imagePickerRef = useRef(null);
   const [image, setImage] = useState(null);
-  // const [inf, setInf] = useState();
   const dispatch = useDispatch();
 
   const handleDispatchDataToList = () => {
@@ -37,7 +36,9 @@ function EditAndAddUser({ setIsModalOpen, isModalOpen, item, index }) {
   };
 
   useEffect(() => {
-    setInformationOfUser({ ...item, isChecked: false });
+    item?.name
+      ? setInformationOfUser({ ...item, isChecked: false })
+      : setInformationOfUser({ ...item, isChecked: false, isApproved: false });
   }, []);
 
   return (
@@ -112,7 +113,10 @@ function EditAndAddUser({ setIsModalOpen, isModalOpen, item, index }) {
         <Button onClick={handleDispatchDataToList} type="normal">
           save
         </Button>
-        <Button onClick={() => setIsModalOpen(false)} type="back">
+        <Button
+          onClick={() => setIsModalOpen(false, { editAndAddUser: false })}
+          type="back"
+        >
           back
         </Button>
       </div>

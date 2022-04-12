@@ -27,3 +27,10 @@ export const editCheck = (data, index, checkingState, allChecked) => {
     payload: { data, index, checkingState, allChecked },
   };
 };
+
+export const manageApprovement = (index) => {
+  return {
+    type: actionTypes.APPROVE_SUCCESS,
+    payload: index,
+  };
+};

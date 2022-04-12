@@ -56,11 +56,30 @@ export const addToListReducer = (state = initialState, action) => {
         error: false,
         data: [
           ...state.data.map((item, i) => {
+            if (action.payload.data === "uncheckAll") {
+              return { ...item, isChecked: false };
+            }
             if (action.payload.data === false) {
               return { ...item, isChecked: true };
             }
             if (i === action.payload.index) {
               return { ...item, isChecked: action.payload.checkingState };
+            } else {
+              return item;
+            }
+          }),
+        ],
+      };
+    }
+    case actionTypes.APPROVE_SUCCESS: {
+      return {
+        requesting: false,
+        success: true,
+        error: false,
+        data: [
+          ...state.data.map((item, i) => {
+            if (i === action.payload) {
+              return { ...item, isApproved: true };
             } else {
               return item;
             }

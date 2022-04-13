@@ -6,6 +6,7 @@ import tick from "../../../assets/icons/tick.png";
 import { manageApprovement } from "../../../store/actions";
 import { useDispatch } from "react-redux";
 import RowOfInformationOfCheck from "./checkInformationRow";
+import avatar from "../../../assets/icons/avatar.png";
 
 function Check({ setIsModalOpen, item, index }) {
   const [approveBooleans, setApproveBooleans] = useState(null);
@@ -70,6 +71,7 @@ function Check({ setIsModalOpen, item, index }) {
         <div className={styles["info-container"]}>
           {arrayOfInformation.map((item, i) => (
             <RowOfInformationOfCheck
+              key={i}
               approveBooleans={approveBooleans}
               setApproveBooleans={setApproveBooleans}
               information={item}
@@ -81,21 +83,25 @@ function Check({ setIsModalOpen, item, index }) {
       <div className={styles["picture-container"]}>
         <p>Profile Pic: </p>
         <div>
-          <img src={item?.img} alt="avatar" />
+          <img src={item?.img || avatar} alt="avatar" />
           <div>
             <img
               name="pic"
               onClick={(e) => handleApproveInformationOfUser(e, "cross")}
               src={cross}
               alt="cross"
-              className={selectCrossOrTick === "cross" && styles["cross"]}
+              className={
+                selectCrossOrTick === "cross" ? styles["cross"] : "undefined"
+              }
             />
             <img
               name="pic"
               onClick={handleApproveInformationOfUser}
               src={tick}
               alt="tick"
-              className={selectCrossOrTick === "tick" && styles["tick"]}
+              className={
+                selectCrossOrTick === "tick" ? styles["tick"] : "undefined"
+              }
             />
           </div>
         </div>

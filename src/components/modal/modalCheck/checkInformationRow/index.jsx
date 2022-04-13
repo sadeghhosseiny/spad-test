@@ -30,14 +30,18 @@ function CheckInformationRow({
           onClick={(e) => handleApproveInformationOfUser(e, "cross")}
           src={cross}
           alt="cross"
-          className={selectCrossOrTick === "cross" && styles["cross"]}
+          className={
+            selectCrossOrTick === "cross" ? styles["cross"] : "undefined"
+          }
         />
         <img
           name={information || "field" + index}
           onClick={handleApproveInformationOfUser}
           src={tick}
           alt="tick"
-          className={selectCrossOrTick === "tick" && styles["tick"]}
+          className={
+            selectCrossOrTick === "tick" ? styles["tick"] : "undefined"
+          }
         />
       </div>
     </div>

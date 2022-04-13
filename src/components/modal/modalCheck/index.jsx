@@ -17,10 +17,10 @@ function Check({ setIsModalOpen, item, index }) {
   const arrayOfInformation = [
     name,
     FamilyName,
+    mobile,
     IDNo,
     BirthDate,
     address,
-    mobile,
   ];
 
   const handleApproveInformationOfUser = (e, name) => {

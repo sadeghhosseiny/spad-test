@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Button from "../button";
 import styles from "./userCard.module.css";
-import editImage from "../../icons/edit.png";
+import editImage from "../../assets/icons/edit.png";
 import Modal from "../modal";
 import UserInfo from "../modal/modalUserInfo";
 import { useDispatch } from "react-redux";
 import { editCheck } from "../../store/actions";
-import approvedIcon from "../../icons/approvedIcon.png";
-import notApprovedIcon from "../../icons/notApprovedIcon.png";
+import approvedIcon from "../../assets/icons/approvedIcon.png";
+import notApprovedIcon from "../../assets/icons/notApprovedIcon.png";
 import Check from "../modal/modalCheck";
 import avatar from "../../assets/icons/avatar.png";
 

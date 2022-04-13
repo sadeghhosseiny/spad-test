@@ -6,8 +6,8 @@ import UserCard from "../../components/userCard";
 import { data } from "../../mockData";
 import { editCheck, getData } from "../../store/actions";
 import styles from "./home.module.css";
-import searchIcon from "../../icons/searchIcon.png";
-import trashCan from "../../icons/trashCanIcon.png";
+import searchIcon from "../../assets/icons/searchIcon.png";
+import trashCan from "../../assets/icons/trashCanIcon.png";
 
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);

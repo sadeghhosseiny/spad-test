@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Button from "../button";
+import Button from "../../button";
 import styles from "./check.module.css";
-import cross from "../../icons/cross.png";
-import tick from "../../icons/tick.png";
-import { manageApprovement } from "../../store/actions";
+import cross from "../../../assets/icons/cross.png";
+import tick from "../../../assets/icons/tick.png";
+import { manageApprovement } from "../../../store/actions";
 import { useDispatch } from "react-redux";
-import RowOfInformationOfCheck from "../rowOfInformationOfCheck";
+import RowOfInformationOfCheck from "./checkInformationRow";
 
 function Check({ setIsModalOpen, item, index }) {
   const [approveBooleans, setApproveBooleans] = useState(null);
@@ -41,7 +41,7 @@ function Check({ setIsModalOpen, item, index }) {
       (item) => item === true
     ).length;
     numberOfTrues === 7 && dispatch(manageApprovement(index));
-    setIsModalOpen({ editAndAddUser: false });
+    setIsModalOpen({ userInfo: false });
   };
 
   return (
@@ -101,11 +101,15 @@ function Check({ setIsModalOpen, item, index }) {
         </div>
       </div>
       <div className={styles["btns"]}>
-        <Button onClick={handleApproveUser} type="normal">
-          save
-        </Button>
-        <Button onClick={() => setIsModalOpen({ check: false })} type="back">
+        <Button
+          comp="modal"
+          onClick={() => setIsModalOpen({ check: false })}
+          type="back"
+        >
           back
+        </Button>
+        <Button comp="modal" onClick={handleApproveUser} type="normal">
+          save
         </Button>
       </div>
     </div>

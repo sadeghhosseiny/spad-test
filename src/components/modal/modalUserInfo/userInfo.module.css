@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
+  padding: 20px;
 }
 
 .inputs-container {
@@ -16,10 +17,17 @@
   justify-content: start;
   align-items: flex-start;
   gap: 60px;
+  margin-top: 60px;
 }
 
 .picture-container > p {
   margin: 0;
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  color: #747474;
 }
 
 .name-container > p {
@@ -30,7 +38,7 @@
   display: flex;
   justify-content: flex-end;
   margin: 20px;
-  gap: 20px;  
+  gap: 10px;  
 }
 
 .photo {
@@ -51,4 +59,10 @@
 .picture-container > img {
   width: 100px;
   border-radius: 5px;
+}
+
+.error-text {
+  color: red;
+  text-align: end;
+  margin: 0px 25px 0px 0px;
 }

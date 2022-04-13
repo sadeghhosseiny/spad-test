@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import cross from "../../icons/cross.png";
-import tick from "../../icons/tick.png";
-import styles from "./rowOfInfo.module.css";
+import cross from "../../../../assets/icons/cross.png";
+import tick from "../../../../assets/icons/tick.png";
+import styles from "./checkInfoRow.module.css";
 
-function RowOfInformationOfCheck({
+function CheckInformationRow({
   approveBooleans,
   setApproveBooleans,
   information,
@@ -23,7 +23,7 @@ function RowOfInformationOfCheck({
 
   return (
     <div>
-      <p>{information || "not entered"}</p>
+      <p className={styles["info"]}>{information || "not entered"}</p>
       <div>
         <img
           name={information || "field" + index}
@@ -44,4 +44,4 @@ function RowOfInformationOfCheck({
   );
 }
 
-export default RowOfInformationOfCheck;
+export default CheckInformationRow;

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import EditAndAddUser from "../../components/editAndAddUser";
+import UserInfo from "../../components/modal/modalUserInfo";
 import Modal from "../../components/modal";
-import Person from "../../components/person";
-import { data } from "../../data";
+import UserCard from "../../components/userCard";
+import { data } from "../../mockData";
 import { editCheck, getData } from "../../store/actions";
 import styles from "./home.module.css";
 import searchIcon from "../../icons/searchIcon.png";
@@ -16,7 +16,7 @@ function Home() {
   const dispatch = useDispatch();
 
   const [allChecked, setAllChecked] = useState(false);
-
+  const [counterOfIsChecked, setCounterOfIsChecked] = useState(0);
   const [searchedText, setSearchedText] = useState("");
 
   useEffect(() => {
@@ -25,6 +25,7 @@ function Home() {
 
   const handleCheckboxChange = () => {
     dispatch(editCheck(allChecked));
+    allChecked && dispatch(editCheck("uncheckAll"));
     setAllChecked(!allChecked);
   };
 
@@ -32,6 +33,13 @@ function Home() {
     dispatch(editCheck("uncheckAll"));
     setAllChecked(false);
   };
+
+  useEffect(() => {
+    const numberOfTrues = usersData.filter(
+      (item) => item.isChecked === true
+    ).length;
+    numberOfTrues === usersData.length && setAllChecked(true);
+  }, [counterOfIsChecked]);
 
   return (
     <>
@@ -52,7 +60,6 @@ function Home() {
               alt="trash-can"
             />
           )}
-
           <input
             onChange={handleCheckboxChange}
             type="checkbox"
@@ -62,7 +69,10 @@ function Home() {
         {usersData?.map(
           (item, index) =>
             item.isChecked && (
-              <Person
+              <UserCard
+                length={usersData.length}
+                setCounterOfIsChecked={setCounterOfIsChecked}
+                counterOfIsChecked={counterOfIsChecked}
                 searchedText={searchedText}
                 setAllChecked={setAllChecked}
                 index={index}
@@ -74,7 +84,10 @@ function Home() {
         {usersData?.map(
           (item, index) =>
             !item.isChecked && (
-              <Person
+              <UserCard
+                length={usersData.length}
+                setCounterOfIsChecked={setCounterOfIsChecked}
+                counterOfIsChecked={counterOfIsChecked}
                 searchedText={searchedText}
                 setAllChecked={setAllChecked}
                 index={index}
@@ -92,7 +105,7 @@ function Home() {
       </div>
       {isModalOpen && (
         <Modal>
-          <EditAndAddUser setIsModalOpen={setIsModalOpen} />
+          <UserInfo setIsModalOpen={setIsModalOpen} />
         </Modal>
       )}
     </>

@@ -1,14 +1,14 @@
 .main-container {
-  margin: 20px;
+  max-width: 800px;
+  margin: auto;
+  padding: 0px 5px 0px 20px;
 }
 
 .container {
   width: 100%;
   display: flex;
-  gap: 40px;
-  /* margin-left: auto; */
+  gap: 25px;
   margin-top: 30px;
-  /* max-width: 710px; */
   justify-content: flex-start;
 }
 
@@ -24,28 +24,36 @@
 
 .info-container > div > div {
   display: flex;
-  gap: 10px;
+  gap: 5px;
 }
 
 .info-container > div > div > img {
   cursor: pointer;
+  border-radius: 100px;
 }
 
 .texts-container > div {
   display: flex;
 }
 
+.texts-container > div > p, .picture-container > p {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  color: #747474;
+}
+
 .btns {
   display: flex;
   justify-content: flex-end;
-  margin: 20px;
-  gap: 20px;  
+  margin: 80px 15px 10px 10px;
+  gap: 10px;  
 }
 
 .picture-container {
   width: 100%;
-  /* max-width: 710px; */
-  /* margin-left: auto; */
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -70,17 +78,18 @@
 
 .picture-container > div > div {
   display: flex;
-  gap: 10px;
+  gap: 5px;
 }
 
 .picture-container > div > div > img {
   cursor: pointer;
+  border-radius: 100px;
 }
 
 .cross {
-  box-shadow: 0px 10px 10px rgb(2 2 2);
+  box-shadow: 0px 5px 10px rgb(2 2 2);
 }
 
 .tick {
-  box-shadow: 0px 10px 10px rgb(22 159 8);
+  box-shadow: 0px 5px 10px rgb(22 159 8);
 }

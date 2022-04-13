@@ -1,23 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToList, editList } from "../../store/actions";
-import Button from "../button";
-import InputField from "../inputField";
-import styles from "./editAndAddUser.module.css";
-import cameraIcon from "../../icons/cameraIcon.png";
+import { addToList, editList } from "../../../store/actions";
+import Button from "../../button";
+import InputField from "../../inputField";
+import styles from "./userInfo.module.css";
+import cameraIcon from "../../../assets/icons/cameraIcon.png";
 
-function EditAndAddUser({ setIsModalOpen, item, index }) {
+function UserInfo({ setIsModalOpen, item, index }) {
   const [informationOfUsers, setInformationOfUser] = useState(null);
+  const [isClickedOnSave, setIsClickedOnSave] = useState(false);
 
   const imagePickerRef = useRef(null);
   const [image, setImage] = useState(null);
   const dispatch = useDispatch();
 
   const handleDispatchDataToList = () => {
-    item?.name
-      ? dispatch(editList(informationOfUsers, index))
-      : dispatch(addToList(informationOfUsers));
-    setIsModalOpen(false);
+    !informationOfUsers?.name && setIsClickedOnSave(true);
+    if (informationOfUsers?.name) {
+      item?.name
+        ? dispatch(editList(informationOfUsers, index))
+        : dispatch(addToList(informationOfUsers));
+    }
+
+    informationOfUsers?.name && setIsModalOpen(false);
   };
 
   const addImage = (e) => {
@@ -110,18 +115,22 @@ function EditAndAddUser({ setIsModalOpen, item, index }) {
         </div>
       </div>
       <div className={styles["btns"]}>
-        <Button onClick={handleDispatchDataToList} type="normal">
-          save
-        </Button>
         <Button
-          onClick={() => setIsModalOpen(false, { editAndAddUser: false })}
+          comp="modal"
+          onClick={() => setIsModalOpen(false, { userInfo: false })}
           type="back"
         >
           back
         </Button>
+        <Button comp="modal" onClick={handleDispatchDataToList} type="normal">
+          save
+        </Button>
       </div>
+      {isClickedOnSave && !informationOfUsers?.name && (
+        <p className={styles["error-text"]}>must has a name</p>
+      )}
     </div>
   );
 }
 
-export default EditAndAddUser;
+export default UserInfo;

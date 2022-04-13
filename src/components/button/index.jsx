@@ -1,11 +1,13 @@
 import React from "react";
 import styles from "./button.module.css";
 
-function Button({ type, children, onClick }) {
+function Button({ comp, type, children, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={type === "normal" ? styles["btn"] : styles["btn-back"]}
+      className={`${comp === "modal" && styles["btn-modal"]} ${
+        type === "normal" ? styles["btn"] : styles["btn-back"]
+      }`}
     >
       {children}
     </button>

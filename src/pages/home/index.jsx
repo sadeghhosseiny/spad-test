@@ -8,6 +8,7 @@ import { editCheck, getData } from "../../store/actions";
 import styles from "./home.module.css";
 import searchIcon from "../../assets/icons/searchIcon.png";
 import trashCan from "../../assets/icons/trashCanIcon.png";
+import ellipse from "../../assets/icons/ellipse.png";
 
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,6 +59,14 @@ function Home() {
               onClick={handleUncheckAllTrashIcons}
               src={trashCan}
               alt="trash-can"
+            />
+          )}
+          {!allChecked && usersData.find((item) => item.isChecked) && (
+            <img
+              className={styles["ellipse"]}
+              onClick={handleCheckboxChange}
+              src={ellipse}
+              alt="ellipse"
             />
           )}
           <input
